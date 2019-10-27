@@ -1,11 +1,12 @@
 package com.iavariav.marketplacesmk10.ui.activity
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.iavariav.marketplacesmk10.R
 import com.iavariav.marketplacesmk10.rest.ApiConfig
 import kotlinx.android.synthetic.main.activity_detail_produk.*
@@ -14,6 +15,7 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class DetailProdukActivity : AppCompatActivity() {
 
@@ -24,6 +26,9 @@ class DetailProdukActivity : AppCompatActivity() {
     private var hargaBarang: String? = null
     private var stokBarang: String? = null
 
+    var myMediaPlayer: MediaPlayer? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_produk)
@@ -33,6 +38,8 @@ class DetailProdukActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        myMediaPlayer = MediaPlayer.create(this, R.raw.battle);
+
 
         idBarang = intent.getStringExtra("ID_BARANG")
         namaBarang = intent.getStringExtra("NAMA_BARANG")
@@ -50,6 +57,7 @@ class DetailProdukActivity : AppCompatActivity() {
         tvDeskripsiBarang.text = deskripsiBarang
 
         fab.setOnClickListener {
+            myMediaPlayer?.start()
             val apiService = ApiConfig.getApiService()
             apiService.beliData(idBarang!!).enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(

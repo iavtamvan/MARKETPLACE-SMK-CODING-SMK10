@@ -1,6 +1,7 @@
 package com.iavariav.marketplacesmk10.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -11,12 +12,20 @@ import com.iavariav.marketplacesmk10.ui.fragment.TampilFragment
 import com.ogaclejapan.smarttablayout.SmartTabLayout
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val sharedPreferences = getSharedPreferences(
+            "LSP",
+            MODE_PRIVATE)
+        tvToken.text = sharedPreferences.getString("SHARED_TOKEN","")
+
+
 
         val adapter = FragmentPagerItemAdapter(
             supportFragmentManager, FragmentPagerItems.with(this)

@@ -8,6 +8,13 @@
     android:orientation="vertical"
     tools:context=".ui.activity.MainActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="token"
+        android:textColor="@android:color/black"
+        android:id="@+id/tvToken"/>
+
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:id="@+id/viewpagertab"
         android:layout_width="match_parent"
