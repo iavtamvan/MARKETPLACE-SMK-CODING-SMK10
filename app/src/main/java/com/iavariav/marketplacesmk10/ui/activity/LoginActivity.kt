@@ -20,8 +20,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        supportActionBar?.hide()
         btn_login.setOnClickListener {
             postLogin()
+            
         }
     }
 
@@ -48,10 +50,7 @@ class LoginActivity : AppCompatActivity() {
                                     )
                                 )
 
-                                val sharedPreferences = getSharedPreferences(
-                                    "LSP",
-                                    MODE_PRIVATE
-                                )
+                                val sharedPreferences = getSharedPreferences("LSP", MODE_PRIVATE)
                                 val editor = sharedPreferences.edit()
                                 editor.putString("SHARED_LOGIN", error)
                                 editor.apply()
